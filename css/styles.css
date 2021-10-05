@@ -241,7 +241,7 @@ p {
   font-family: inherit;
   font-weight: bold;
   font-size: 16px;
-  line-height: 1.87;
+  line-height: 1.8;
   align-items: center;
   letter-spacing: 0.06em;
   min-width: 200px;
@@ -655,9 +655,9 @@ p {
 }
 
 .form-footer .form-field .form-input {
-  background: #2f303a;
+  background: var(--bg-color-footer);
   min-width: 358px;
-  padding: 15px 16px;
+  padding: 16px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
   border-radius: 4px;
@@ -670,7 +670,15 @@ p {
 }
 
 .form-footer .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: 12px;
+  fill: var(--text-color-white);
+}
+
+.form-footer .button .icon {
+  margin-left: 10px;
 }
 
 /* beckdrop */
@@ -716,6 +724,8 @@ p {
 
 /* button close */
 .modal .button-close {
+  padding: 0;
+  cursor: pointer;
   position: absolute;
   top: 8px;
   right: 8px;
@@ -727,9 +737,15 @@ p {
 }
 .modal .button-close .icon {
   fill: var(--text-color-blac);
+
   margin: auto;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.modal .button-close:hover .icon,
+.modal .button-close:focus .icon {
+  fill: var(--accent-color);
+}
 /* modal form */
 .modal-form .form-request {
   color: var(--title-text-color);
@@ -741,6 +757,8 @@ p {
 }
 
 .modal-form .form-field {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
@@ -761,13 +779,44 @@ p {
 }
 
 .modal-form .form-field .form-input {
-  padding: 11px 12px;
+  padding: 12px;
+  padding-left: 42px;
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;
+  cursor: pointer;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    padding-left 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-form .form-field .form-input:hover,
+.modal-form .form-field .form-input:focus {
+  border: 1px solid var(--accent-color);
+}
+.modal-form .form-field .form-input:not(:placeholder-shown) {
+  padding-left: 12px;
+}
+
+.modal-form .form-field .icon {
+  position: absolute;
+  bottom: 11px;
+  left: 12px;
+  pointer-events: none;
+  fill: var(--title-text-color);
+  opacity: 1;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1), left 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-form .form-field .form-input:hover + .icon,
+.modal-form .form-field .form-input:focus + .icon {
+  fill: var(--accent-color);
+}
+.modal-form .form-field .form-input:not(:placeholder-shown) + .icon {
+  left: -18px;
+  opacity: 0;
 }
 
 .modal-form .form-field:nth-child(6) .form-checkbox {
   margin-right: 8px;
+  cursor: pointer;
 }
 .modal-form .form-field:nth-child(6) .form-label,
 .modal-form .form-field:nth-child(6) .link {
@@ -775,6 +824,10 @@ p {
   font-size: 14px;
   line-height: 1.71;
   letter-spacing: 0.03em;
+}
+
+.modal-form .form-field:nth-child(6) .link {
+  color: var(--accent-color);
 }
 
 .modal-form .form-field .form-textarea {
